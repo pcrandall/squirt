@@ -165,6 +165,9 @@ sq.host =  window.location.search.match('sq-dev') ?
       nextNodeTimeoutId = setTimeout(nextNode, intervalMs * getDelay(lastNode, jumped));
     };
 
+    var wordlengthaverage = 5;
+    var wl = 5;
+
     var waitAfterShortWord = 1.2;
     var waitAfterComma = 2;
     var waitAfterPeriod = 3;
@@ -176,6 +179,11 @@ sq.host =  window.location.search.match('sq-dev') ?
       if(word == "Mr." ||
           word == "Mrs." ||
           word == "Ms.") return 1;
+      if (word.length -1 > wordlengthaverage){
+        wl = word.length-1
+          }
+      delay = intervalMs*(wl / wordlengthaverage)
+      console.log({Delay: delay})
       var lastChar = word[word.length - 1];
       if(lastChar.match('”|"')) lastChar = word[word.length - 2];
       if(lastChar == '\n') return waitAfterParagraph;
